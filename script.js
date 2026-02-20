@@ -3,28 +3,60 @@ function toggleMenu() {
     document.getElementById("navLinks").classList.toggle("show");
 }
 
-// TYPING EFFECT
-const text = ["Web Developer", "Freelancer", "UI Designer"];
-let count = 0, index = 0, currentText = "", letter = "";
+// CLOSE MENU WHEN LINK CLICKED (MOBILE UX)
+document.querySelectorAll(".nav-links a").forEach(link => {
+    link.addEventListener("click", () => {
+        document.getElementById("navLinks").classList.remove("show");
+    });
+});
 
-(function type() {
-    if (count === text.length) count = 0;
-    currentText = text[count];
-    letter = currentText.slice(0, ++index);
+// TYPING EFFECT WITH DELETE
+const words = ["Web Developer", "Freelancer", "UI Designer"];
+let wordIndex = 0;
+let letterIndex = 0;
+let currentWord = "";
+let isDeleting = false;
 
-    document.getElementById("typing").textContent = letter;
+function typeEffect() {
+    const typing = document.getElementById("typing");
+    if (!typing) return;
 
-    if (letter.length === currentText.length) {
-        count++;
-        index = 0;
+    currentWord = words[wordIndex];
+
+    if (!isDeleting) {
+        typing.textContent = currentWord.slice(0, ++letterIndex);
+    } else {
+        typing.textContent = currentWord.slice(0, --letterIndex);
     }
-    setTimeout(type, 120);
-})();
 
-// DARK MODE
-document.getElementById("themeToggle").onclick = () => {
-    document.body.classList.toggle("light");
+    if (!isDeleting && letterIndex === currentWord.length) {
+        isDeleting = true;
+        setTimeout(typeEffect, 1000);
+        return;
+    }
+
+    if (isDeleting && letterIndex === 0) {
+        isDeleting = false;
+        wordIndex = (wordIndex + 1) % words.length;
+    }
+
+    setTimeout(typeEffect, isDeleting ? 60 : 120);
 }
+
+typeEffect();
+
+// DARK MODE TOGGLE + ICON CHANGE
+const themeToggle = document.getElementById("themeToggle");
+
+themeToggle.onclick = () => {
+    document.body.classList.toggle("light");
+
+    if (document.body.classList.contains("light")) {
+        themeToggle.textContent = "☀️";
+    } else {
+        themeToggle.textContent = "🌙";
+    }
+};
 
 // SCROLL REVEAL
 const observer = new IntersectionObserver(entries => {
@@ -37,16 +69,49 @@ const observer = new IntersectionObserver(entries => {
 
 document.querySelectorAll(".hidden").forEach(el => observer.observe(el));
 
+// ACTIVE NAV LINK ON SCROLL
+const sections = document.querySelectorAll("section");
+const navLinks = document.querySelectorAll(".nav-links a");
+
+window.addEventListener("scroll", () => {
+    let current = "";
+
+    sections.forEach(section => {
+        const sectionTop = section.offsetTop - 120;
+        if (scrollY >= sectionTop) {
+            current = section.getAttribute("id");
+        }
+    });
+
+    navLinks.forEach(a => {
+        a.classList.remove("active");
+        if (a.getAttribute("href") === "#" + current) {
+            a.classList.add("active");
+        }
+    });
+});
+
 // MODAL
 function openModal(text) {
-    document.getElementById("modal").style.display = "flex";
+    const modal = document.getElementById("modal");
     document.getElementById("modalText").innerText = text;
+    modal.style.display = "flex";
 }
 
+// CLOSE MODAL
 function closeModal() {
     document.getElementById("modal").style.display = "none";
 }
 
+// CLOSE MODAL WHEN CLICK OUTSIDE
+window.onclick = function (e) {
+    const modal = document.getElementById("modal");
+    if (e.target === modal) {
+        modal.style.display = "none";
+    }
+};
+
+// CONTACT BUTTON
 function showMessage() {
-    alert("Your message has been sent 🚀");
+    alert("Thanks for reaching out! 🚀");
 }
