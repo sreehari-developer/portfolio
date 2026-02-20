@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sreehari | Developer</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header>
+        <nav class="navbar">
+            <h2 class="logo">Sreehari</h2>
+
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+
+            <div class="toggle-container">
+                <button id="themeToggle">🌙</button>
+                <div class="hamburger" onclick="toggleMenu()">☰</div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- HERO -->
+    <section id="home" class="hero">
+        <h1>Hi, I'm <span>Sreehari</span></h1>
+        <h2><span id="typing"></span></h2>
+        <a href="#projects" class="btn">View Work</a>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="section hidden">
+        <h2>About Me</h2>
+        <p>
+            I create responsive, modern websites using HTML, CSS and JavaScript.
+            I help small businesses and individuals build their online presence.
+        </p>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects" class="section hidden">
+        <h2>Projects</h2>
+
+        <div class="projects-container">
+
+            <div class="project-card" onclick="openModal('Project 1 details')">
+                <h3>Gym Website</h3>
+                <p>Landing page for a fitness brand.</p>
+            </div>
+
+            <div class="project-card" onclick="openModal('Project 2 details')">
+                <h3>Portfolio</h3>
+                <p>Modern personal portfolio.</p>
+            </div>
+
+            <div class="project-card" onclick="openModal('Project 3 details')">
+                <h3>Business Site</h3>
+                <p>Website for small business.</p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="section hidden">
+        <h2>Contact Me</h2>
+        <p>Email: sreehari7manoj@gmail.com</p>
+        <button class="btn" onclick="showMessage()">Hire Me</button>
+    </section>
+
+    <!-- MODAL -->
+    <div class="modal" id="modal">
+        <div class="modal-content">
+            <span onclick="closeModal()">✖</span>
+            <p id="modalText"></p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
