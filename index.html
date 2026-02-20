@@ -4,12 +4,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sreehari | Developer</title>
+
+    <title>Sreehari | Web Developer Portfolio</title>
+
+    <meta name="description"
+        content="Sreehari is a freelance web developer creating responsive websites using HTML, CSS and JavaScript.">
+    <meta name="keywords" content="Sreehari, Web Developer, Portfolio, Freelance, HTML, CSS, JavaScript, Kerala">
+    <meta name="author" content="Sreehari">
+
     <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="favicon.png">
 </head>
 
 <body>
 
+    <!-- NAVBAR -->
     <header>
         <nav class="navbar">
             <h2 class="logo">Sreehari</h2>
@@ -32,15 +41,21 @@
     <section id="home" class="hero">
         <h1>Hi, I'm <span>Sreehari</span></h1>
         <h2><span id="typing"></span></h2>
-        <a href="#projects" class="btn">View Work</a>
+
+        <p class="hero-tagline">
+            I build fast, responsive and modern websites for businesses and individuals.
+        </p>
+
+        <a href="#projects" class="btn">View My Work</a>
     </section>
 
     <!-- ABOUT -->
     <section id="about" class="section hidden">
         <h2>About Me</h2>
         <p>
-            I create responsive, modern websites using HTML, CSS and JavaScript.
-            I help small businesses and individuals build their online presence.
+            I am a web developer specializing in HTML, CSS and JavaScript.
+            I create clean, responsive and user-friendly websites.
+            Currently available for freelance projects.
         </p>
     </section>
 
@@ -50,19 +65,22 @@
 
         <div class="projects-container">
 
-            <div class="project-card" onclick="openModal('Project 1 details')">
+            <div class="project-card">
                 <h3>Gym Website</h3>
                 <p>Landing page for a fitness brand.</p>
+                <a href="#" target="_blank">Live Preview</a>
             </div>
 
-            <div class="project-card" onclick="openModal('Project 2 details')">
-                <h3>Portfolio</h3>
-                <p>Modern personal portfolio.</p>
+            <div class="project-card">
+                <h3>Portfolio Website</h3>
+                <p>Modern responsive personal portfolio.</p>
+                <a href="#" target="_blank">Live Preview</a>
             </div>
 
-            <div class="project-card" onclick="openModal('Project 3 details')">
-                <h3>Business Site</h3>
+            <div class="project-card">
+                <h3>Business Website</h3>
                 <p>Website for small business.</p>
+                <a href="#" target="_blank">Live Preview</a>
             </div>
 
         </div>
@@ -71,7 +89,23 @@
     <!-- CONTACT -->
     <section id="contact" class="section hidden">
         <h2>Contact Me</h2>
+
         <p>Email: sreehari7manoj@gmail.com</p>
+
+        <p>
+            GitHub:
+            <a href="https://github.com/sreehari-developer" target="_blank">
+                https://github.com/sreehari-developer
+            </a>
+        </p>
+
+        <p>
+            Fiverr:
+            <a href="#" target="_blank">
+                Coming soon
+            </a>
+        </p>
+
         <button class="btn" onclick="showMessage()">Hire Me</button>
     </section>
 
@@ -84,6 +118,7 @@
     </div>
 
     <script src="script.js"></script>
+
 </body>
 
 </html>
