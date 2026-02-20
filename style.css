@@ -1,7 +1,8 @@
 :root {
     --bg: #0f172a;
     --text: white;
-    --card: rgba(255, 255, 255, 0.1);
+    --card: rgba(255, 255, 255, 0.08);
+    --accent: #38bdf8;
 }
 
 .light {
@@ -11,7 +12,7 @@
 
 body {
     margin: 0;
-    font-family: Arial, sans-serif;
+    font-family: 'Segoe UI', sans-serif;
     background: var(--bg);
     color: var(--text);
     scroll-behavior: smooth;
@@ -21,68 +22,143 @@ body {
 .navbar {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     padding: 15px 40px;
     position: fixed;
     width: 100%;
-    backdrop-filter: blur(10px);
+    top: 0;
+    backdrop-filter: blur(12px);
+    background: rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+}
+
+.logo {
+    font-weight: bold;
+    font-size: 22px;
 }
 
 .nav-links {
     display: flex;
-    gap: 20px;
+    gap: 25px;
     list-style: none;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--text);
+    position: relative;
+}
+
+.nav-links a::after {
+    content: "";
+    width: 0%;
+    height: 2px;
+    background: var(--accent);
+    position: absolute;
+    left: 0;
+    bottom: -5px;
+    transition: 0.3s;
+}
+
+.nav-links a:hover::after {
+    width: 100%;
 }
 
 .hamburger {
     display: none;
-    cursor: pointer;
+    font-size: 24px;
 }
 
 /* HERO */
 .hero {
     height: 100vh;
+    padding-top: 80px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    text-align: center;
+
+    background: linear-gradient(to right, #0f172a, #020617);
+}
+
+.hero h1 span {
+    background: linear-gradient(45deg, #38bdf8, #0ea5e9);
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+.hero-tagline {
+    max-width: 500px;
+    margin-top: 10px;
+    opacity: 0.8;
 }
 
 /* BUTTON */
 .btn {
-    background: #38bdf8;
-    padding: 12px 25px;
+    background: var(--accent);
+    padding: 12px 28px;
     color: white;
-    text-decoration: none;
-    margin-top: 20px;
-    display: inline-block;
     border-radius: 8px;
+    text-decoration: none;
+    margin-top: 25px;
+    transition: 0.3s;
+}
+
+.btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px var(--accent);
 }
 
 /* SECTIONS */
 .section {
-    padding: 100px 40px;
+    padding: 120px 40px;
     text-align: center;
 }
 
 /* PROJECTS */
 .projects-container {
     display: flex;
-    gap: 20px;
+    gap: 25px;
     flex-wrap: wrap;
     justify-content: center;
 }
 
 .project-card {
     background: var(--card);
-    padding: 20px;
-    width: 250px;
-    border-radius: 15px;
-    cursor: pointer;
-    transition: 0.3s;
+    padding: 25px;
+    width: 260px;
+    border-radius: 18px;
+    transition: 0.4s;
+    position: relative;
+    overflow: hidden;
+}
+
+.project-card::before {
+    content: "";
+    position: absolute;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    top: -100%;
+    left: -100%;
+    transition: 0.6s;
+}
+
+.project-card:hover::before {
+    top: 100%;
+    left: 100%;
 }
 
 .project-card:hover {
-    transform: translateY(-10px);
+    transform: translateY(-12px) scale(1.03);
+}
+
+.project-card a {
+    display: inline-block;
+    margin-top: 10px;
+    color: var(--accent);
+    text-decoration: none;
 }
 
 /* MODAL */
@@ -100,14 +176,14 @@ body {
     background: white;
     color: black;
     padding: 30px;
-    border-radius: 10px;
+    border-radius: 12px;
 }
 
 /* SCROLL ANIMATION */
 .hidden {
     opacity: 0;
     transform: translateY(40px);
-    transition: 0.6s;
+    transition: 0.7s;
 }
 
 .show {
@@ -117,16 +193,29 @@ body {
 
 /* MOBILE */
 @media(max-width:768px) {
+
     .nav-links {
         display: none;
         flex-direction: column;
-        background: black;
+        background: #020617;
         position: absolute;
         right: 0;
-        top: 60px;
+        top: 70px;
+        width: 200px;
+        padding: 20px;
+        border-radius: 10px;
+    }
+
+    .nav-links.show {
+        display: flex;
     }
 
     .hamburger {
         display: block;
+        cursor: pointer;
+    }
+
+    .section {
+        padding: 100px 20px;
     }
 }
